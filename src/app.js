@@ -10,7 +10,6 @@ conexao.on('error', (erro) => {
     console.error('erro de conexão', erro);
 })
 
-
 // caso conexão seja bem sucedida
 conexao.once('open', () => {
     console.log('Conexão com o banco feita com sucesso');
@@ -27,11 +26,6 @@ function buscaLivro(id) {
 
 app.get('/', (req, res) => {
     res.status(200).send('Curso de Node.js');
-});
-
-app.get('/livros', async (req, res) => {
-    const listaLivros = await livro.find({});
-    res.status(200).json(listaLivros);
 });
 
 app.get('/livros/:id', (req, res) => {
