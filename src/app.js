@@ -1,6 +1,6 @@
 import express from 'express';
 import conectaNaDatabase from './config/dbConnect.js';
-import livro from './models/livro.js';
+import routes from './routes/index.js';
 
 // estabelece a conexão com o banco de dados
 const conexao = await conectaNaDatabase();
@@ -16,17 +16,7 @@ conexao.once('open', () => {
 })
 
 const app = express();
-app.use(express.json());
-
-function buscaLivro(id) {
-    return livros.findIndex(livro => {
-        return livro.id === Number(id);
-    })
-}
-
-app.get('/', (req, res) => {
-    res.status(200).send('Curso de Node.js');
-});
+routes(app);
 
 app.get('/livros/:id', (req, res) => {
     const index = buscaLivro(req.params.id);
