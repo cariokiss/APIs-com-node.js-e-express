@@ -18,10 +18,4 @@ conexao.once('open', () => {
 const app = express();
 routes(app);
 
-app.delete('/livros/:id', (req, res) => {
-    const index = buscaLivro(req.params.id);
-    livros.splice(index, 1);
-    res.status(204).send();
-})
-
 export default app;
